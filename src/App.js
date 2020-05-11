@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import { Switch, Route, Redirect } from 'react-router-dom'
+
+import Navbar from 'components/navbars/DefaultNavbar.js'
+// Site Pages
+import TodayPage from 'pages/today/index.js'
+import CoursesPage from 'pages/courses/index.js'
+import PageNotFound from 'pages/404Page.js'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Switch>
+        <Redirect from="/" to="/daily-challenges" exact/>
+        <Route path="/daily-challenges" component={TodayPage} />
+        <Route path="/courses" component={CoursesPage} />
+        <Route path="*" component={PageNotFound} />
+      </Switch>
     </div>
   );
 }
