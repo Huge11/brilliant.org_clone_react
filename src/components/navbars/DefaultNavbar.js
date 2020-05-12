@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-// import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { 
   MDBContainer as Container, 
@@ -39,6 +39,7 @@ export default NavbarPage;
 
 
 function InnerNavbar(){
+  const location = useLocation()
   const [isOpen, setIsOpen] = useState(false)
   const toggleCollapse = () => setIsOpen(!isOpen)
   return (
@@ -50,14 +51,14 @@ function InnerNavbar(){
       <MDBNavbarToggler onClick={toggleCollapse} />
       <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
         <MDBNavbarNav left>
-          <NavItem active>
+          <NavItem active={location.pathname === "/daily-challenges"}>
             <NavLink link to="/daily-challenges">Today</NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem active={location.pathname === "/courses"}>
             <NavLink link to="/courses">Courses</NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink link to="#!">Practice</NavLink>
+          <NavItem active={location.pathname === "/practice"}>
+            <NavLink link to="/practice">Practice</NavLink>
           </NavItem>
 
         </MDBNavbarNav>

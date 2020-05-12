@@ -10,7 +10,7 @@ import {
   MDBRow as Row
 } from 'mdbreact';
 
-function BasicCard(){
+function ImageLeftContentRight(){
   return (
     <MDBCard className="m-3">
       <MDBCardBody className="m-auto">
@@ -29,4 +29,4 @@ function BasicCard(){
   )
 }
 
-export default BasicCard;
+export default ImageLeftContentRight;

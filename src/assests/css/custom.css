@@ -1,5 +1,16 @@
-html,body,#root,.App {
-  height: 100vh
+#root,.App {
+  height: 100%
 }
 
-body { padding-top: 70px; }
+.pad-footer {
+  padding-bottom: 100px;
+}
+
+.background {
+  padding-bottom: 100px;
+  height: 100%
+}
+
+body { 
+  padding-top: 70px; 
+}

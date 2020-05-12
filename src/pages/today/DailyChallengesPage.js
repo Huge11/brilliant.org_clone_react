@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Calendar from 'components/utils/Calendar.js'
-import BasicCard from 'components/UX/BasicCard.js'
+import BasicCard from 'components/cards/imageLeftContentRight.js'
 
 import { 
   MDBContainer as Container, 
@@ -11,9 +11,9 @@ import {
 
 function TodayPage(){
   return(
-    <Container fluid className="grey h-100 d-inline-block ">
+    <Container fluid className=" ">
       <Row className="h-100">
-        <Col className="grey lighten-4 h-100 d-none d-md-block" md={5} lg={5} xl={5}>
+        <Col className="grey lighten-4 d-none d-md-block background" md={5} lg={5} xl={5}>
           <Container className="pt-5">
             <Row>
               <Col md={4} lg={4} xl={4}>
@@ -28,7 +28,7 @@ function TodayPage(){
             </Row>
           </Container>
         </Col>
-        <Col className="grey lighten-2" xs={12} sm={12} md={7} lg={7} xl={7}>
+        <Col className="grey lighten-2 background" xs={12} sm={12} md={7} lg={7} xl={7}>
           <Container className="pt-5">
             <Row>
               <Col className="" xs={12} sm={12} md={12} lg={12} xl={9}>
@@ -36,6 +36,10 @@ function TodayPage(){
                 <hr/>
                 <BasicCard />
                 <BasicCard />
+                <BasicCard />
+                <BasicCard />
+                <BasicCard />
+
               </Col>
               <Col xs={0} sm={0} md={0} lg={0} xl={3}>
                 {/* Window Spacing column */}
