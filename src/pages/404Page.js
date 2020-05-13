@@ -4,7 +4,7 @@ import {
   MDBRow,
   MDBContainer as Container
 } from 'mdbreact';
-import logo from "assests/brand/fb_cover_long_yellow_blue_bg.png";
+import logo from "assets/brand/fb_cover_long_yellow_blue_bg.png";
 
 
 const NotFoundPage =  () => {

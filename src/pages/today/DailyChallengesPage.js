@@ -11,7 +11,7 @@ import {
 
 function TodayPage(){
   return(
-    <Container fluid className=" ">
+    <Container fluid className=" h-100">
       <Row className="h-100">
         <Col className="grey lighten-4 d-none d-md-block background" md={5} lg={5} xl={5}>
           <Container className="pt-5">

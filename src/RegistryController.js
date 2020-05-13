@@ -15,6 +15,10 @@ export const getQuizzes = ()=>{
 
 
 // Get by functions
+export const getCourseByName = courseName => {
+  return Courses.find(course => course.name==courseName)
+}
+
 export const getCoursesByCategory = categoryName => {
   return Courses.filter(course => course.categories.indexOf(categoryName) != -1)
 }

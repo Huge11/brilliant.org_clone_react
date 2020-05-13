@@ -33,6 +33,12 @@ export const Quizzes = [
   {
     name: "learn-the-A-shape",
     title: "Learn the A Shape",
-    component: ()=>{}
+    course: "learn-the-basic-chord-shapes",
+    pages: [
+      {
+        component: ()=>{},
+        quiz: ()=>{}
+      }
+    ]
   }
 ]
