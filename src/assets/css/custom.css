@@ -18,3 +18,5 @@ body {
 .h-vh {
   height: 100vh
 }
+
+.clickable { cursor: pointer; }

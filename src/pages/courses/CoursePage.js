@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link, useRouteMatch } from 'react-router-dom'
 
 import * as Registry from 'RegistryController.js'
 
@@ -6,7 +7,7 @@ import {
   MDBContainer as Container, 
   MDBRow as Row,
   MDBCol as Col,
-  MDBLink as Link,
+  MDBLink,
   MDBIcon as Icon,
   MDBBtn,
   MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText 
@@ -15,50 +16,53 @@ import {
 
 import BasicModal from 'components/UX/BasicModal.js'
 import NumInCircle from 'components/UX/NumInCircle';
-import QuizCard from 'components/cards/imageAndTitle.js'
+// import QuizCard from 'components/cards/imageAndTitle.js'
 
 
-function CoursePage(props){
+function CoursePage({course}){
+  // console.log(props)
   const [readMore, setReadMore] = useState(false)
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const toggleModal = ()=>setModalIsOpen(!modalIsOpen)
+  const getNumQuizzes = ()=>Registry.getAllQuizzesByCourse(course.name).length
+  const getNumExercises = ()=>Registry.getAllQuizzesByCourse(course.name).reduce((accum,val)=>{return accum.concat(val.pages)},[]).length
+
+  const createChapterRows = (chapters)=>chapters.map(chapter=><ChapterRow chapter={chapter} />)
 
   return(
     <Container fluid className="background">
       <Container fluid className="grey lighten-4 background">
-        <BasicModal isOpen={modalIsOpen} toggleModal={toggleModal} title={<ModalTitle {...props} />} body={<ModalBody {...props} />} />
+        <BasicModal isOpen={modalIsOpen} toggleModal={toggleModal} title={<ModalTitle {...course} />} body={<ModalBody {...course} />} />
         <Container className="pt-5 ">
           <Row>
             <Col xs={12} sm={12} md={7} lg={7} xl={7} >
-              <Link className="text-muted" link to="/courses"><Icon icon="angle-double-left" /> Back to courses</Link>
-              <h1><strong>{props.title}</strong></h1>
-              <h3 className="pt-3">{props.subTitle}</h3>
+              <MDBLink className="text-muted" link to="/courses"><Icon icon="angle-double-left" /> Back to courses</MDBLink>
+              <h1><strong>{course.title}</strong></h1>
+              <h3 className="pt-3">{course.subTitle}</h3>
               <div>
-                <div className="pt-5" dangerouslySetInnerHTML={{__html: props.descriptionHtml}}></div> 
-                <Link className="text-muted p-0" onClick={()=>{setReadMore(true)}} hidden={readMore}>...Read More</Link>
+                <div className="pt-5" dangerouslySetInnerHTML={{__html: course.descriptionHtml}}></div> 
+                <MDBLink className="text-muted p-0" onClick={()=>{setReadMore(true)}} hidden={readMore}>...Read More</MDBLink>
               </div>
               
-              {readMore ? <ReadMoreSection courseName={props.name} /> : null}
-              <Link className="text-muted pt-5" onClick={toggleModal}>View prerequisites and next steps</Link>
+              {readMore ? <ReadMoreSection courseName={course.name} /> : null}
+              <MDBLink className="text-muted pt-5" onClick={toggleModal}>View prerequisites and next steps</MDBLink>
             </Col>
             <Col className="pt-5" xs={12} sm={12} md={5} lg={5} xl={5} >
               <MDBCard>
                 <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
                   waves />
                 <MDBCardBody>
-                  {/* <MDBCardTitle>{props.title}</MDBCardTitle>
-                  <MDBCardText>Some quick example text to build on the card title and make up the bulk of the card's content.</MDBCardText> */}
                   <Row>
                     <Col>
-                      <div className="h2">39</div>
+                      <div className="h2">{getNumQuizzes()}</div>
                       <div className="text-muted">interactive quizzes</div>
                     </Col>
                     <Col>
-                      <div className="h2">394+</div>
+                      <div className="h2">{getNumExercises()}</div>
                       <div className="text-muted">Concepts and Exercises</div>              
                     </Col>
                   </Row>
-                  <MDBBtn fluid href="#" className="mt-3 btn-block btn-lg"><strong>Continue Course</strong></MDBBtn>
+                  <MDBBtn fluid block size="lg" className="mt-3"><strong>Continue Course</strong></MDBBtn>
                 </MDBCardBody>
               </MDBCard>
             </Col>
@@ -66,54 +70,15 @@ function CoursePage(props){
         </Container>
       </Container>
       <Container className="pt-5">
-        <Container fluid>
-          <Row>
-            <NumInCircle num="1"/>
-            <Col>
-              <h2>Chapter Title</h2>
-              <div>Chapter Summary</div>
-            </Col>
-          </Row>
-          <Row>
-            <SpacedQuizCard />
-          </Row>
-        </Container>
-        <Container fluid className="pt-5">
-          <Row>
-            <NumInCircle num="2"/>
-            <Col>
-              <h2>Chapter Title</h2>
-              <div>Chapter Summary</div>
-            </Col>
-          </Row>
-          <Row>
-            <SpacedQuizCard />
-            <SpacedQuizCard />
-            <SpacedQuizCard />
-
-          </Row>
-        </Container>
-        <Container fluid className="pt-5">
-          <Row>
-            <NumInCircle num="3"/>
-            <Col>
-              <h2>Chapter Title</h2>
-              <div>Chapter Summary</div>
-            </Col>
-          </Row>
-          <Row>
-            <SpacedQuizCard />
-            <SpacedQuizCard />
-          </Row>
-        </Container>
-      </Container>
+        {createChapterRows(Registry.getChaptersByCourse(course.name))}
+      </Container> 
       <Container className="pt-5">
         <Row>
           <Col>
             <div className="text-muted">Prerequisites</div>
             <hr />
             <Row>
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt="..."/>
               <Col>
                 <div className="h5">Title</div>
                 <div>Description</div>
@@ -124,14 +89,14 @@ function CoursePage(props){
             <div className="text-muted">Next Steps</div>
             <hr />
             <Row>
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt="..." />
               <Col>
                 <div className="h5">Title</div>
                 <div>Description</div>
               </Col>
             </Row>
             <Row className="pt-5">
-              <img src="https://via.placeholder.com/150" />
+              <img src="https://via.placeholder.com/150" alt="..." />
               <Col>
                 <div className="h5">Title</div>
                 <div>Description</div>
@@ -146,6 +111,26 @@ function CoursePage(props){
 
 export default CoursePage;
 
+function ChapterRow({chapter}){
+  console.log(chapter)
+  const createQuizCards = quizzes => quizzes.map(quiz=><SpacedQuizCard quiz={quiz} />)
+
+  return(
+    <Container fluid className="pt-5">
+      <Row>
+        <NumInCircle num="1"/>
+        <Col>
+          <h2>{chapter.title}</h2>
+          <div>{chapter.description}</div>
+        </Col>
+      </Row>
+      <Row>
+        {createQuizCards(Registry.getQuizzesByChapter(chapter))}
+      </Row>
+    </Container>
+  )
+}
+
 
 function SpacedQuizCard(props){
   return(
@@ -155,10 +140,25 @@ function SpacedQuizCard(props){
   )
 }
 
+function QuizCard({quiz}){
+  const {path} = useRouteMatch()
+
+  return(
+    <MDBCard>
+      <MDBCardImage className="img-fluid" src={ quiz.img ? quiz.img : "https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"} waves />
+      <MDBCardBody>
+        <MDBCardTitle>{quiz.title}</MDBCardTitle>
+        <MDBCardText>{quiz.description}</MDBCardText>
+        <Link to={path+"/"+quiz.name}><MDBBtn block >Go To Quiz</MDBBtn></Link>
+      </MDBCardBody>
+    </MDBCard>
+  )
+}
+
 function ReadMoreSection({courseName}){
   const quizzes = Registry.getAllQuizzesByCourse(courseName)
-  const createTopics = arr => arr.map(item=><div>{item.name}</div>)
-  console.log(quizzes)
+  const createTopics = arr => arr.map(item=><div>{item.title}</div>)
+  // console.log(quizzes)
   return(
     <div className="pt-3">
       <h6><strong>Topics Covered</strong></h6>
@@ -193,7 +193,7 @@ function ModalBody(props){
           <hr />
           <Row>
             <Col>
-              <img src="https://via.placeholder.com/100" />
+              <img src="https://via.placeholder.com/100" alt="..." />
             </Col>
             <Col>
               <p><strong>Course Title</strong></p>
@@ -206,7 +206,7 @@ function ModalBody(props){
           <hr />
           <Row>
             <Col>
-              <img src="https://via.placeholder.com/100.png" />
+              <img src="https://via.placeholder.com/100.png" alt="..." />
             </Col>
             <Col>
               <p><strong>Course Title</strong></p>

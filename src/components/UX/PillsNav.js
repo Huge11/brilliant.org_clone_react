@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBNav, MDBNavItem, MDBNavLink } from "mdbreact";
+import { MDBNav, MDBNavLink } from "mdbreact";
 
 function PillsNav (){
   return (

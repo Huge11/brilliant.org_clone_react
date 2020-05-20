@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch, Redirect } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 // import AllCoursesPage from './AllCoursesPage.js'
 import QuizPage from './QuizPage.js'
 import CoursePage from 'pages/courses/CoursePage.js'
-import PageNotFound from "pages/404Page.js"
+// import PageNotFound from "pages/404Page.js"
 
 import { Quizzes } from 'Registry.js' 
 

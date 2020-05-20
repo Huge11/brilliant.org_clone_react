@@ -16,11 +16,11 @@ export const getQuizzes = ()=>{
 
 // Get by functions
 export const getCourseByName = courseName => {
-  return Courses.find(course => course.name==courseName)
+  return Courses.find(course => course.name===courseName)
 }
 
 export const getCoursesByCategory = categoryName => {
-  return Courses.filter(course => course.categories.indexOf(categoryName) != -1)
+  return Courses.filter(course => course.categories.indexOf(categoryName) !== -1)
 }
 
 export const getChaptersByCourse = courseName => {
@@ -31,6 +31,14 @@ export const getQuizzesByChapter = chapter => {
   return chapter.quizzes.map(quizName=>Quizzes.find(quiz => quiz.name === quizName))
 }
 
+// export const getAllQuizzesByCourse = courseName => {
+//   return getChaptersByCourse(courseName).reduce((accum, chapter)=>accum.concat(getQuizzesByChapter(chapter)),[])
+// }
+
 export const getAllQuizzesByCourse = courseName => {
-  return getChaptersByCourse(courseName).reduce((accum, chapter)=>accum.concat(getQuizzesByChapter(chapter)),[])
+  return Quizzes.filter(quiz=>quiz.course === courseName)
+}
+
+export const getPagesInQuiz = quizName => {
+  return Quizzes.find(quiz => quiz.name === quizName).pages
 }

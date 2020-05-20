@@ -6,15 +6,26 @@ import {
   MDBContainer as Container, 
   MDBRow as Row,
   MDBCol as Col,
+  MDBCard as Card,
+  MDBCardImage as CardImage,
+  MDBCardBody as CardBody,
+  MDBCardTitle as CardTitle,
+  MDBCardText as CardText,
+  MDBBtn as Button,
 } from "mdbreact"
 
-import CourseCard from 'components/cards/imageAndTitle'
+import {Link} from 'react-router-dom'
+
+// import CourseCard from 'components/cards/imageAndTitle'
 
 import SearchBar from 'components/UX/SearchBar.js'
 import PillsNav from 'components/UX/PillsNav'
+// import { Categories } from '../../Registry'
 
 
 function SearchCourses(){
+  const createCategoryRows = categories => categories.map(category=><CategoryRow category={category} />)
+  
   return(
     <Container fluid>
       <Container className="pt-5">
@@ -28,30 +39,7 @@ function SearchCourses(){
              <PillsNav />
           </Col>
         </Row>
-        <Row className="pt-5">
-          <h6 className="h5">Beginner Courses</h6>
-          <hr/>
-          <Row>
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-          </Row>
-        </Row>
-        <Row className="pt-5">
-          <h6 className="h5">Intermediate Courses</h6>
-          <hr/>
-          <Row>
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-            <SpacedCourseCard />
-          </Row>
-        </Row>
+        {createCategoryRows(Registry.getCategories())}
       </Container>
     </Container>
   )
@@ -60,10 +48,45 @@ function SearchCourses(){
 export default SearchCourses
 
 
+function CategoryRow({category}){
+  const Courses = Registry.getCoursesByCategory(category.name)
+  const createCourseCards = courses => courses.map(course=><SpacedCourseCard course={course}/>)
+
+  return (
+    <>
+      { Courses.length > 0
+        ?
+          <Container className="pt-5">
+            <h6 className="h5">{category.title}</h6>
+            <hr/>
+            <Row>
+              {createCourseCards(Courses)}
+            </Row>
+          </Container>
+        :
+          null
+      }
+    </>
+  )
+}
+
 function SpacedCourseCard(props){
   return(
     <Col className="p-3" xs={6} sm={6} md={4} lg={3} xl={3} >
       <CourseCard {...props} />
     </Col>
+  )
+}
+
+function CourseCard({course}){
+  return(
+    <Card>
+      <CardImage className="img-fluid" src={course.img ? course.img : "https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"} waves />
+      <CardBody>
+        <CardTitle>{course.title}</CardTitle>
+        <CardText>{course.description}</CardText>
+        <Link  to={"courses/"+course.name} ><Button block>Go to course</Button></Link>
+      </CardBody>
+    </Card>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 function ModalPage({isOpen, toggleModal, title, body, footer=false}){
 
