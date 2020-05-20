@@ -19,22 +19,24 @@ import {
   MDBIcon
 } from 'mdbreact';
 
-import ErrorAlert from "components/notifications/errorAlert.js"
+import ErrorAlert from "components/notifications/ErrorAlert.js"
+import SuccessAlert from "components/notifications/SuccessAlert.js"
 import Spinner from 'components/UX/Spinner'
 
 
 const SignupModal = ({isOpen=false, toggle})=>{
   const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [password2, setPassword2] = useState("")
-  const toggleLoading = ()=>setLoading(!loading)
+  // const toggleLoading = ()=>setLoading(!loading)
 
   const register = (e)=>{
     e.preventDefault()
-    toggleLoading()
+    setLoading(true)
     let error = false
     if (password !== password2){
       error="Your passwords don't match"
@@ -55,15 +57,17 @@ const SignupModal = ({isOpen=false, toggle})=>{
           return updateFirebaseProfile({displayName: name})
         })
         .then(()=>{
-          toggleLoading()
+          setSuccess("Welcome to Daily Guitar Workout!")
+          setLoading(false)
           toggle()
         })
         .catch(e=>{
+          setLoading(false)
           console.error(e)
           setError(e.message)
         })
     }else{
-      toggleLoading()
+      setLoading(false)
       setError(error)
     }
 
@@ -72,7 +76,8 @@ const SignupModal = ({isOpen=false, toggle})=>{
 
   return(
     <MDBModal isOpen={isOpen} toggle={toggle} size="lg">
-      {error ? <ErrorAlert toggle={()=>setError(false)} errorAlert={error} /> : null }
+      {error ? <ErrorAlert toggle={()=>setError(false)} message={error} /> : null }
+      {success ? <SuccessAlert toggle={()=>setSuccess(false)} message={success} /> : null }
       {/* <MDBModalBody> */}
         <MDBContainer fluid className="px-0"> 
           <MDBRow middle className="w-100 m-0">

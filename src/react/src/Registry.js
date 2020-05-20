@@ -13,6 +13,7 @@ export const Categories = [
   { name: "finger-picking", title: "Finger Picking" },
   { name: "arpeggios", title: "Arpeggios" },
   { name: "music-theory", title: "Music Theory" },
+  { name: 'technique', title: "Technique" },
   
   { name: "beginner", title: "Beginner" },
   { name: "zero", title: "My First Time Playing" },
@@ -24,11 +25,103 @@ export const Categories = [
 
 export const Courses = [
   {
+    name: 'learn-to-read-basic-guitar-markups',
+    title: 'Learn how to read tabs, chord charts, and song sheets',
+    subTitle: "Learn how to understand the common ways guitarists share musical ideas and songs.",
+    descriptionHtml: "<p>In this course we'll learn how to read common musical notations for the guitar.  By the end of this course you will be able to understand any chord chart, guitar tab, scale sheet, or common song notation easily and quickly.</p><p>This course is for first time guitarists who aren't sure how to read common guitar notation.  This is a perfect introductory course to our site as we common musical notation in every course and every quiz on our site.  ",
+    categories: ['zero'],
+    chapters: [
+      {
+        name: "introduction", title: "Introduction", description: "You'll see some common guitar markups and learn the basics of how to interpret them.",
+        quizzes: [
+          'guitar-notation-types',
+          'guitar-notation-basics',
+        ]
+      },
+      {
+        name: "learn-to-read-chord-charts", title: "Learning to read Chord Charts", description: "You'll learn how to read any kind of chord chart.",
+        quizzes: [
+          'basics-of-chord-charts',
+          'chord-chart-fingerings',
+          'chord-chart-open-strings',
+          'chord-charts-up-the-neck', // barre + moveable chords
+          'using-a-capo' // or tips and tricks
+        ]
+      },
+      {
+        name: 'learn-to-read-chord-sheets', title: "Read Chord Sheets and Play Songs", description: "Once you understand chord charts, you can begin to learn songs from song sheets and chord sheets.",
+        quizzes: [
+          ''
+        ]
+      },
+      {
+        name: 'learn-to-read-tabs', title: "Learning to read Tabs", description: "You'll learn how to read guitar \"tabs\", the musical notation that most guitar riffs and solos are written in.",
+        quizzes: [
+          ''
+        ]
+      }
+    ]
+  },
+  {
+    name: 'guitar-technique-fundamentals',
+    title: '"Get it right the first time" techniques for playing the guitar',
+    subTitle: "Learn finger placement and how to hold the guitar properly, to create the best sound and the fastest improvements",
+    descriptionHtml: "<p>In this course we'll look at how to hold the guitar, how to sit, how to hold our hand on the fretboard, and other essential skills for a beginner guitarist.  </p><p>This course is perfect for anyone who has never played the guitar before and would like to know the correct way to position themselves, or for more experienced players who want to return to the basics to refresh their base skills",
+    categories: ['zero', 'beginner', 'technique'],
+    chapters: [
+      {
+        name: 'introduction', title: 'Introduction', description: "Learn your way around a guitar, it's important to get familiar with your instrument before you start playing!",
+        quizzes: [
+          'guitar-anatomy',
+          'guitar-terms',
+          'musical-terms',
+          'getting-comfortable'
+        ]
+      },
+      {
+        name: "body-placement", title: 'Body Placement', description: "How you sit or stand while playing can have a huge impact on your playing, we'll look at some common techniques and postions",
+        quizzes: [
+          'holding-an-acoustic-guitar',
+          'holding-an-electric-guitar',
+          'holding-an-acoustic-guitar-classical',
+          'body-positioning-mistakes',
+          'body-positioning-tips',
+        ]
+      },
+      {
+        name: "fret-hand-placement", title: 'Getting the Fret Hand Right', description: "Your fret hand is going to have a huge effect on the sound of your guitar.",
+        refDoc: ['https://www.libertyparkmusic.com/5-must-know-fretting-techniques-for-beginner-guitarists/'],
+        quizzes: [
+          'fret-hand-fingertip-accuracy',
+          'fret-hand-fingertip-placement',
+          'fret-hand-thumb-position',
+          'fret-hand-finger-curve',
+          'fret-hand-wrist-position'
+        ]
+      },
+      {
+        name: 'strumming-hand-position', title: "Best Ways to Strum the Guitar", description: "Keep your rhythm section tight with the best methods of strumming the guitar",
+        refDoc: ['https://www.cyberfret.com/guitar-strumming/strumming-without-a-pick/'],
+        quizzes: [
+          'holding-a-pick',
+          'strumming-without-a-pick',
+          'strumming-across-the-body',
+          'strumming-wrist-position',
+          'strumming-movement',
+          'strumming-common-mistakes',
+          'strumming-tips',
+          'strumming-common-styles'
+        ]
+      },
+
+    ]
+  },
+  {
     name: "learn-the-basic-chord-shapes",
     title: "Learn the Basic Chord Shapes",
     subTitle: "In this course you will learn the basic chord shapes that every guitarist must know.",
-    categories: ["beginner", "chords"],
     descriptionHtml: "In this course you will learn the basic chord shapes that every guitarist must know.",
+    categories: ["beginner", "chords"],
     chapters: [
       {
         name: "introduction", title: "Introduction", description: "We're going to learn the A shape on the guitar",

@@ -40,15 +40,12 @@ function NavbarPage (){
   const [loginIsOpen, setLoginIsOpen] = useState(false)
   const toggleLogin = () => setLoginIsOpen(!loginIsOpen)
 
-  console.log(loginIsOpen)
-  console.log(signupIsOpen)
-
   return (
     <Navbar className="border-bottom" color="white" light expand="md" fixed="top">
-      { loginIsOpen ? <LoginModal isOpen={loginIsOpen} toggle={toggleLogin} /> : console.log("no login modal") }
-      { signupIsOpen ? <SignupModal isOpen={signupIsOpen} toggle={toggleSignup} /> : console.log("no signup modal") }
+      { loginIsOpen ? <LoginModal isOpen={loginIsOpen} toggle={toggleLogin} /> : null }
+      { signupIsOpen ? <SignupModal isOpen={signupIsOpen} toggle={toggleSignup} /> : null }
       <Container>
-        <Brand href="/brand/fb_cover_long_yellow_blue_bg.png">
+        <Brand href="/">
           {/* <img src={logo}></img> */}
           <strong className="">Daily Guitar Workout</strong>
         </Brand>

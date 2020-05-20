@@ -134,9 +134,15 @@ function ChapterRow({chapter}){
 
 function SpacedQuizCard(props){
   return(
-    <Col className="pt-5" xs={12} sm={6} md={4} lg={3} xl={3}>
-      <QuizCard {...props} />
-    </Col>
+    <>
+      { props.quiz ? 
+        <Col className="pt-5" xs={12} sm={6} md={4} lg={3} xl={3}>
+          <QuizCard {...props} />
+        </Col>
+      :
+        null
+      }
+    </>
   )
 }
 
