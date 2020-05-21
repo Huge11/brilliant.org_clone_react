@@ -1,0 +1,17 @@
+{
+  "name": "learn-to-read-chord-charts", 
+  "title": "Learning to read Chord Charts", 
+  "description": "You'll learn how to read any kind of chord chart.",
+  "quizzes": [
+    "what-is-a-chord",
+    "how-to-read-a-chord-chart",
+    "my-first-chord",
+    "common-mistakes-learning-chords",
+    "tips-and-tricks-for-learning-chords"
+  ]
+}
+    // 'basics-of-chord-charts',
+    // 'chord-chart-fingerings',
+    // 'chord-chart-open-strings',
+    // 'chord-charts-up-the-neck', // barre + moveable chords
+    // 'using-a-capo' // or tips and tricks

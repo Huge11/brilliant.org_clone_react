@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 
 import { Switch, Route } from 'react-router-dom'
 
@@ -7,11 +7,16 @@ import { UserContext } from 'utils/contexts/user.js';
 
 import Navbar from 'components/navbars/DefaultNavbar.js'
 // Site Pages
-import LandingPage from 'pages/landing/Landing.js'
+import LandingPage from 'pages/Landing.js'
 import TodayPage from 'pages/today/index.js'
 import CoursesRoutes from 'pages/courses/coursesRoutes.js'
-// import {QuizzesRoutes} from 'pages/quizzes/index.js'
 import PageNotFound from 'pages/404Page.js'
+
+// lazy load Components
+const DevRoutes = React.lazy(()=> import('Development/DevRoutes'))
+// const OtherComponent = React.lazy(() => import('./OtherComponent'));
+
+const dev = process.env.NODE_ENV !== 'production'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -33,8 +38,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={LandingPage} />
           <Route path="/daily-challenges" component={TodayPage} />
-          <Route path="/courses" render={props => <CoursesRoutes {...props} />} /> */}
-          {/* <Route path="/quizzes" render={props => <QuizzesRoutes {...props} />} /> */}
+          <Route path="/courses" render={props => <CoursesRoutes {...props} />} /> 
+          {dev ? <Suspense fallback={<div>Loading...</div>}><Route path="/dev" render={props => <DevRoutes {...props} /> } /></Suspense> : null}
           <Route path="*" component={PageNotFound} />
         </Switch>
       </div>

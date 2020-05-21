@@ -1,0 +1,11 @@
+{
+  "name": "guitar-markup-introduction", 
+  "title": "Introduction", 
+  "description": "You'll see some common guitar markups and learn the basics of how to interpret them.",
+  "quizzes": [
+    "super-simple-music-theory",
+    "guitar-notation-types",
+    "guitar-notation-basics",
+    "chord-and-scale-types"
+  ]
+},

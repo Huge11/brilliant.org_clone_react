@@ -13,10 +13,12 @@ import {
   // MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText 
 } from "mdbreact"
 
-import WizardProvider, {WizardContext} from 'components/wizard/WizardContext'
+import WizardProvider from 'components/wizard/WizardProvider'
+import {WizardContext} from 'utils/contexts/wizard'
 import WizardDisplay from 'components/wizard/WizardDisplay'
 
 function QuizPage({course,quiz}){
+
   return(
     <Container fluid className="h-100">
       <Row className="h-vh">

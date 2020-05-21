@@ -1,0 +1,8 @@
+{
+  "name": "learn-to-read-basic-guitar-markups",
+  "title": "Learn how to read tabs, chord charts, and song sheets",
+  "subTitle": "Learn how to understand the common ways guitarists share musical ideas and songs.",
+  "descriptionHtml": "<p>In this course we'll learn how to read common musical notations for the guitar.  By the end of this course you will be able to understand any chord chart, guitar tab, scale sheet, or common song notation easily and quickly.</p><p>This course is for first time guitarists who aren't sure how to read common guitar notation.  This is a perfect introductory course to our site as we common musical notation in every course and every quiz on our site.  ",
+  "categories": ["zero"],
+  "chapters": ["guitar-markup-introduction", "learn-to-read-chord-charts", "learn-to-read-chord-sheets", "learn-to-read-scale-sheets", "learn-to-read-tabs"]
+}

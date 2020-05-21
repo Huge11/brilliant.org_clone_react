@@ -1,0 +1,11 @@
+{
+  "name": "learn-to-read-chord-sheets", 
+  "title": "Read Chord Sheets and Play Songs", 
+  "description": "Once you understand chord charts, you can begin to learn songs from song sheets and chord sheets.",
+  "quizzes": [
+    "what-is-a-chord-sheet",
+    "understanding-chord-sheet-rhythm",
+    "chord-sheet-strategy",
+    "chord-sheet-practice"
+  ]
+}

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 
-import {WizardContext} from './WizardContext.js'
+import { WizardContext } from 'utils/contexts/wizard.js'
 
 function WizardDisplay({steps=[], startPage=0}){
   const Wizard = useContext(WizardContext)

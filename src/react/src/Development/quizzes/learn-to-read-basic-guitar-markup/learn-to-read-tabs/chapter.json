@@ -1,0 +1,12 @@
+{
+  "name": "learn-to-read-tabs", 
+  "title": "Learning to read Tabs", 
+  "description": "You'll learn how to read guitar \"tabs\", the musical notation that most guitar riffs and solos are written in.",
+  "quizzes": [
+    "what-is-a-tab",
+    "learning-to-play-a-tab",
+    "tab-notation-and-flurishes",
+    "common-problems-with-tabs", //rhythm
+    "tips-and-tricks-for-playing-tabs"
+  ]
+}
